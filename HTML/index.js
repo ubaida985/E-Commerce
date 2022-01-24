@@ -74,42 +74,24 @@ $(document).ready(function () {
     //product quantity section on product page
     let $quantityUp = $(".qty .qtyUp");
     let $quantityDown = $(".qty .qtyDown");
-    let $dealPrice = $("#dealPrice");
-
     // let $quantityInput = $(".qty .qtyInput");
 
-
-
     $quantityUp.click(function () {
-
-        let dataId = $(this).attr("data-id");
-
-        let $input = $(`.qtyInput[data-id='${$(this).data("id")}']`);
-        let $price2 = $(`.productPrice[data-id='${$(this).data("id")}']`);
-
-        console.log($input)
-        let x = parseFloat($price.textContent) / parseFloat($input.val());
-
-        if ($input.val() >= 1 && $input.val() <= 9) {
-            $input.val(function (i, oldval) {
-                return ++oldval;
-            });
-
-            $price2.innerHTML = parseFloat($input.val()) * x + ".00";
-
-        }
-
-    }); // closing qty up button
-
-    $quantityDown.click(function () {
-
-        let $input = $(`.qtyInput[data-id='${$(this).data("id")}']`);
-        let $price = $(`.productPrice[data-id='${$(this).data("id")}']`);
-
-        if ($input.val() > 1 && $input.val() <= 10) {
-            $input.val(function (i, oldval) {
-                return --oldval;
+        let $quantityInput = $(`.qtyInput[data-id='${$(this).data("id")}']`);
+        if ($quantityInput.val() >= 1 && $quantityInput.val() <= 9) {
+            $quantityInput.val(function (i, oldVal) {
+                return ++oldVal;
             });
         }
     });
+    $quantityDown.click(function () {
+        let $quantityInput = $(`.qtyInput[data-id='${$(this).data("id")}']`);
+        if ($quantityInput.val() <= 10 && $quantityInput.val() >= 2) {
+            $quantityInput.val(function (i, oldVal) {
+                return --oldVal;
+            });
+        }
+    });
+
+
 });
